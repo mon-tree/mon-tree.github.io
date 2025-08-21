@@ -7,7 +7,14 @@ function removeVietnameseTones(str) {
     .replace(/Đ/g, "D");
 }
 
-
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
 
 const jobData = [
   { title: "Lập trình viên Frontend", province: "Hồ Chí Minh", career: "IT", salary: 20000000 },
@@ -158,7 +165,7 @@ function showSearchHistory() {
   historyDiv.innerHTML =
     "<strong>Lịch sử tìm kiếm gần đây:</strong>" +
     history
-      .map((item) => `<div class="history-item" onclick="searchFromHistory('${item}</div>`)
+      .map((item) => `<div class="history-item" onclick="searchFromHistory('${escapeHtml(item)}')">${escapeHtml(item)}</div>`)
       .join("");
 }
 
